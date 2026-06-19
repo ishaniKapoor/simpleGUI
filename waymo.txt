@@ -1,0 +1,22 @@
+Part 1 — JavaScript Warm-up (45 minutes)
+
+Without looking anything up, create a file.
+
+Exercise 1
+
+Given:
+
+an array of vehicles
+each vehicle has
+id
+status
+battery
+city
+
+Write separate functions that:
+
+filter active vehicles
+sort by battery
+group by city
+count how many vehicles are in each status
+remove duplicate IDs

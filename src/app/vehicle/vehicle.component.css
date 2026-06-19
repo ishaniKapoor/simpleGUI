@@ -1,0 +1,62 @@
+/* Vehicle Component Styles */
+#main-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 250px;
+}
+
+#filterTable {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+#vehicles-table {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ddd;
+}
+
+th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background-color: #fafafa;
+}
