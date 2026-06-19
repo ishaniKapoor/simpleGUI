@@ -57,6 +57,50 @@ td {
   border-bottom: 1px solid #eee;
 }
 
+.header-with-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sort-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #555;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sort-icon-button:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.sort-icon-button.active {
+  border-color: #007bff;
+  color: #007bff;
+  background: rgba(0, 123, 255, 0.08);
+}
+
+.sort-icon-button.clear {
+  color: #999;
+}
+
+.sort-icon-button.clear:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
 tbody tr:hover {
   background-color: #fafafa;
 }

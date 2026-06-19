@@ -13,6 +13,7 @@ export class VehicleComponent implements OnInit {
   filteredVehicles: Vehicle[] = [];
   searchTerm = '';
   selectedStatus = 'all';
+  sortOrder: 'asc' | 'desc' | 'none' = 'none';
 
   columns = [
     { key: 'id', label: 'ID' },
@@ -42,11 +43,26 @@ export class VehicleComponent implements OnInit {
     this.applyFilters();
   }
 
+  sortAsc(): void {
+    this.sortOrder = 'asc';
+    this.applyFilters();
+  }
+
+  sortDesc(): void {
+    this.sortOrder = 'desc';
+    this.applyFilters();
+  }
+
+  clearSort(): void {
+    this.sortOrder = 'none';
+    this.applyFilters();
+  }
+
   private applyFilters(): void {
     const term = this.searchTerm.trim().toLowerCase();
     const status = this.selectedStatus.toLowerCase();
 
-    this.filteredVehicles = this.vehicles.filter(vehicle => {
+    const filtered = this.vehicles.filter(vehicle => {
       const cityCheck = vehicle.location?.city?.toLowerCase() ?? '';
       const idCheck = vehicle.id.toLowerCase();
       const statusCheck = String(vehicle.status).toLowerCase();
@@ -54,6 +70,20 @@ export class VehicleComponent implements OnInit {
       const matchesSearch = !term || cityCheck.includes(term) || idCheck.includes(term);
       const matchesStatus = status === 'all' || statusCheck === status;
       return matchesSearch && matchesStatus;
+    });
+
+    this.filteredVehicles = this.applySort(filtered);
+  }
+
+  private applySort(vehicles: Vehicle[]): Vehicle[] {
+    if (this.sortOrder === 'none') {
+      return vehicles;
+    }
+
+    return [...vehicles].sort((a, b) => {
+      return this.sortOrder === 'asc'
+        ? a.battery - b.battery
+        : b.battery - a.battery;
     });
   }
 

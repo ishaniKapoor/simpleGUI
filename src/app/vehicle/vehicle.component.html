@@ -1,19 +1,77 @@
+<!--
+Add button:
+
+Sort ascending
+Sort descending
+Clear sort
+
+Goal:
+
+table updates without mutating original data
+
+Practice:
+
+sort state
+click handler
+spread copy before sort
+-->
 <div id="main-page">
     <div id="search-bar">
         <input type="search" #searchInput id="searchInput" label="Search For ID or City"
         (input)="onSearch(searchInput.value)" placeholder="Search by ID or City">
     </div>
-    <select #filterSelect id="filterTable" (change)="filterTable(filterSelect.value)">
-        <option value="active">Active</option>
-        <option value="offline">Offline</option>
-        <option value="charging">Charging</option>
-        <option value="maintenance">Maintenance</option>
-    </select>
+    <div id="actions">
+        <select #filterSelect id="filterTable" (change)="filterTable(filterSelect.value)">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="offline">Offline</option>
+            <option value="charging">Charging</option>
+            <option value="maintenance">Maintenance</option>
+        </select>
+    </div>
+
     <div id="vehicles-table">
         <table>
             <thead>
-                <tr>
-                    <th *ngFor="let col of columns">{{ col.label }}</th>
+                    <tr>
+                    <th *ngFor="let col of columns">
+                        <ng-container *ngIf="col.key === 'battery'; else labelOnly">
+                            <div class="header-with-icons">
+                                <span>{{ col.label }}</span>
+                                <div class="sort-icons">
+                                    <button
+                                        type="button"
+                                        class="sort-icon-button"
+                                        [class.active]="sortOrder === 'asc'"
+                                        aria-label="Sort battery ascending"
+                                        (click)="sortAsc()"
+                                    >
+                                        ▲
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="sort-icon-button"
+                                        [class.active]="sortOrder === 'desc'"
+                                        aria-label="Sort battery descending"
+                                        (click)="sortDesc()"
+                                    >
+                                        ▼
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="sort-icon-button clear"
+                                        aria-label="Clear battery sort"
+                                        (click)="clearSort()"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #labelOnly>
+                            {{ col.label }}
+                        </ng-template>
+                    </th>
                 </tr>
             </thead>
             <tbody>
